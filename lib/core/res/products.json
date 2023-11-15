@@ -1,0 +1,26 @@
+[
+    {
+        "price": 2000,
+        "name": "jollof rice",
+        "addOns": ["Egg", "Chicken"],
+        "image": "https://media.istockphoto.com/id/1404501005/photo/jollof-rice.webp?b=1&s=170667a&w=0&k=20&c=b4z9ZosJuoVAMRAMGDED2lRUGaidugSV454RXPNQZZU="
+    },
+    {
+        "price": 9000,
+        "name": "Pizza",
+        "addOns": ["Sausage", "Mushroom", "Chili"],
+        "image": "https://media.istockphoto.com/id/184946701/photo/pizza.webp?b=1&s=170667a&w=0&k=20&c=XsysvNtnkEZNnr6CurzM3ej9NBWmtL1G-Jd_V1OkS2k="
+    },
+    {
+        "price": 1500,
+        "addOns": [],
+        "name": "Shawarma",
+        "image": "https://media.istockphoto.com/id/668554280/photo/chicken-shawarma-durum-doner-kebab-copy-space.webp?b=1&s=170667a&w=0&k=20&c=FHUlxGuZZH6QFsZT3oNzw6683H3tN0Gt97TTnZ-LrUg="
+    },
+    {
+        "price": 5000,
+        "name": "Steak",
+        "addOns": ["Butter", "sauce"],
+        "image": "https://media.istockphoto.com/id/171255350/photo/grilled-beefsteak-with-french-fries.webp?b=1&s=170667a&w=0&k=20&c=nJXrVn7z90TvwP4kvwBJM4CktmGnIFw23VI5wpy-f5s="
+    }
+]
