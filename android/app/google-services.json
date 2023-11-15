@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "781907781588",
+    "project_id": "traka-b796b",
+    "storage_bucket": "traka-b796b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:781907781588:android:ca5c865b505d07001e1841",
+        "android_client_info": {
+          "package_name": "com.movit.traka"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "781907781588-lfdqq78tpvsriu5211asg466c3g97bbf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.movit.traka",
+            "certificate_hash": "65f9fb95baf09163699e3673b1924017c8755d20"
+          }
+        },
+        {
+          "client_id": "781907781588-8ca4927hlcos0umu5374ibvioogro3t2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdjwd16cADhfuytOtJosTBZbaukU-8KzM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "781907781588-8ca4927hlcos0umu5374ibvioogro3t2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "781907781588-kgduv7if88po8mc1jeg4o25pc0hhhnha.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.movit.traka"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

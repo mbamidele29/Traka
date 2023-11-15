@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>781907781588-kgduv7if88po8mc1jeg4o25pc0hhhnha.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.781907781588-kgduv7if88po8mc1jeg4o25pc0hhhnha</string>
+	<key>API_KEY</key>
+	<string>AIzaSyC3mvDi9yPt56LBhHtExuQOTD3gtbBVspc</string>
+	<key>GCM_SENDER_ID</key>
+	<string>781907781588</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.movit.traka</string>
+	<key>PROJECT_ID</key>
+	<string>traka-b796b</string>
+	<key>STORAGE_BUCKET</key>
+	<string>traka-b796b.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:781907781588:ios:3f8a4054950995e41e1841</string>
+</dict>
+</plist>

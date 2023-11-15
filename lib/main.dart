@@ -4,6 +4,8 @@ import 'package:traka/core/config/startup.dart';
 import 'package:traka/core/route/generate_route.dart';
 import 'package:traka/core/route/keys.dart';
 
+import 'core/route/navigation_service.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeServices();
@@ -31,6 +33,7 @@ class MyApp extends StatelessWidget {
           ),
           initialRoute: RouteKeys.auth,
           onGenerateRoute: generateRoute,
+          navigatorKey: locator<NavigationService>().navigatorKey,
         );
       },
     );
