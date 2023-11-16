@@ -53,15 +53,16 @@ class OrderItemWidget extends StatelessWidget {
                       padding:
                           EdgeInsets.symmetric(horizontal: 10.w, vertical: 8.h),
                       decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(100.r),
-                          boxShadow: [
-                            BoxShadow(
-                              blurRadius: 20,
-                              offset: const Offset(5, 10),
-                              color: AppColor.shadowColor.withOpacity(.3),
-                            )
-                          ]),
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(100.r),
+                        boxShadow: [
+                          BoxShadow(
+                            blurRadius: 20,
+                            offset: const Offset(5, 10),
+                            color: AppColor.shadowColor.withOpacity(.3),
+                          )
+                        ],
+                      ),
                       child: RichText(
                         text: TextSpan(
                           text: '₦ ',
@@ -98,21 +99,16 @@ class OrderItemWidget extends StatelessWidget {
               9.verticalSpace,
               Padding(
                 padding: EdgeInsets.symmetric(horizontal: 13.w),
-                child: Row(
-                  children: [
-                    Icon(Icons.circle, color: Colors.green, size: 12.w),
-                    8.horizontalSpace,
-                    Text(
-                      'Status',
-                      maxLines: 1,
-                      style: TextStyle(
-                        height: 1,
-                        fontSize: 14.sp,
-                        color: AppColor.grey,
-                        fontWeight: FontWeight.w400,
-                      ),
-                    ),
-                  ],
+                child: Text(
+                  order.product.addOns.join(', '),
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    height: 1,
+                    fontSize: 14.sp,
+                    color: AppColor.grey,
+                    fontWeight: FontWeight.w400,
+                  ),
                 ),
               ),
               13.verticalSpace,

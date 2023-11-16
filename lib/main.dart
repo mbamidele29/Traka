@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:traka/core/config/startup.dart';
 import 'package:traka/core/route/generate_route.dart';
 import 'package:traka/core/route/keys.dart';
+import 'package:traka/core/utils/colors.dart';
 
 import 'core/route/navigation_service.dart';
 
@@ -28,10 +29,11 @@ class MyApp extends StatelessWidget {
           title: 'Traka',
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
-            colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+            scaffoldBackgroundColor: Colors.white,
+            colorScheme: ColorScheme.fromSeed(seedColor: AppColor.primary),
             useMaterial3: true,
           ),
-          initialRoute: RouteKeys.auth,
+          initialRoute: RouteKeys.splash,
           onGenerateRoute: generateRoute,
           navigatorKey: locator<NavigationService>().navigatorKey,
         );

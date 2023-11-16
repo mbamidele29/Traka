@@ -5,6 +5,7 @@ import 'package:ably_flutter/ably_flutter.dart' as ably;
 import 'package:traka/core/data/local_storage.dart';
 import 'package:traka/core/route/navigation_service.dart';
 import 'package:traka/core/services/ably_service.dart';
+import 'package:traka/features/details/cubit/details_cubit.dart';
 import 'package:traka/features/home/cubit/home_cubit.dart';
 import 'package:traka/firebase_options.dart';
 import 'package:traka/features/auth/cubit/auth_cubit.dart';
@@ -13,12 +14,14 @@ import 'package:traka/features/auth/services/service.dart';
 final GetIt locator = GetIt.I;
 
 Future<void> initializeServices() async {
+  locator.allowReassignment = true;
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await _initAbly();
 
   locator.registerSingleton<AuthCubit>(AuthCubit(AuthService()));
   locator.registerSingleton<NavigationService>(NavigationService());
   locator.registerSingleton<HomeCubit>(HomeCubit(locator<AblyService>()));
+  locator.registerSingleton<DetailsCubit>(DetailsCubit(locator<AblyService>()));
 
   const FlutterSecureStorage flutterSecureStorage = FlutterSecureStorage();
   locator.registerSingleton<LocalStorage>(

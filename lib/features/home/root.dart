@@ -7,6 +7,8 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:traka/core/config/startup.dart';
 import 'package:traka/core/models/order_item.dart';
 import 'package:traka/core/models/user.dart';
+import 'package:traka/core/route/keys.dart';
+import 'package:traka/core/route/navigation_service.dart';
 import 'package:traka/core/utils/assets.dart';
 import 'package:traka/core/utils/colors.dart';
 import 'package:traka/core/utils/constants.dart';
@@ -14,6 +16,7 @@ import 'package:traka/core/utils/response_message.dart';
 import 'package:traka/core/widgets/appbar.dart';
 import 'package:traka/core/widgets/button.dart';
 import 'package:traka/core/widgets/cached_image.dart';
+import 'package:traka/features/auth/cubit/auth_cubit.dart';
 import 'package:traka/features/home/cubit/home_cubit.dart';
 import 'package:traka/features/home/widgets/order_shimmer_widget.dart';
 import 'package:traka/features/home/widgets/orders.dart';
@@ -38,11 +41,16 @@ class _HomeScreenState extends State<HomeScreen> {
     channelName = '${user.email}:orders';
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       // delay to simulate loading
-      Future.delayed(const Duration(seconds: 1), () {
-        locator<HomeCubit>().subscribeToOrdersChannel(channelName);
-      });
+      _loadData();
     });
     super.initState();
+  }
+
+  Future<void> _loadData() async {
+    orders.clear();
+    Future.delayed(const Duration(seconds: 1), () {
+      locator<HomeCubit>().subscribeToOrdersChannel(channelName);
+    });
   }
 
   @override
@@ -70,8 +78,24 @@ class _HomeScreenState extends State<HomeScreen> {
       builder: (_, state) {
         return Scaffold(
           appBar: TrakaAppBar(
-            elevation: 2,
             leadingWidth: 250.w,
+            action: Padding(
+              padding: EdgeInsets.only(right: 16.w),
+              child: TextButton(
+                onPressed: () {
+                  locator<AuthCubit>().signout();
+                  locator<NavigationService>().replaceWith(RouteKeys.auth);
+                },
+                child: Text(
+                  'Sign out',
+                  style: TextStyle(
+                    fontSize: 16.sp,
+                    color: Colors.red,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ),
+            ),
             lead: Row(
               children: [
                 Padding(
@@ -110,35 +134,40 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          body: SingleChildScrollView(
-            padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Your orders',
-                  style: TextStyle(
+          body: RefreshIndicator(
+            onRefresh: _loadData,
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(),
+              padding: EdgeInsets.symmetric(horizontal: 16.w, vertical: 20.h),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Your orders',
+                    style: TextStyle(
                       fontSize: 30.sp,
+                      color: AppColor.black,
                       fontWeight: FontWeight.w700,
-                      color: AppColor.black),
-                ),
-                20.verticalSpace,
-                Visibility(
-                  visible: incomingOrder,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const OrderItemShimmerWidget(),
-                      16.verticalSpace,
-                    ],
+                    ),
                   ),
-                ),
-                Visibility(
-                  visible: orders.isEmpty,
-                  replacement: OrdersWidget(orders: orders),
-                  child: const OrdersShimmerWidget(),
-                ),
-              ],
+                  20.verticalSpace,
+                  Visibility(
+                    visible: incomingOrder,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        const OrderItemShimmerWidget(),
+                        16.verticalSpace,
+                      ],
+                    ),
+                  ),
+                  Visibility(
+                    visible: orders.isEmpty,
+                    replacement: OrdersWidget(orders: orders),
+                    child: const OrdersShimmerWidget(),
+                  ),
+                ],
+              ),
             ),
           ),
           floatingActionButtonLocation:

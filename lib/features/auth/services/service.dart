@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+import 'package:http/http.dart';
+import 'package:traka/core/config/config.dart';
 
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
@@ -36,6 +38,22 @@ class AuthService {
       rethrow;
     }
     return null;
+  }
+
+  Future<Response> githubAuth({
+    required String code,
+    required String clientId,
+    required String clientSecret,
+  }) async {
+    return await post(
+      Uri.parse(AppConfig.githubAuthorizedUrl),
+      headers: {"Accept": "application/json"},
+      body: {
+        "code": code,
+        "client_id": clientId,
+        "client_secret": clientSecret,
+      },
+    );
   }
 
   signOut() async {

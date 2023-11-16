@@ -22,7 +22,7 @@ class TrakaAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.titleText,
     this.leadColor,
     this.leadingWidth,
-    this.elevation = 0,
+    this.elevation = 2,
     this.onBackPressed,
     this.centerTitle = true,
   }) : super(key: key);
@@ -53,8 +53,7 @@ class TrakaAppBar extends StatelessWidget implements PreferredSizeWidget {
               style: TextStyle(
                 height: 1,
                 fontSize: 18.sp,
-                color: Colors.white,
-                fontStyle: FontStyle.normal,
+                color: AppColor.black,
                 fontWeight: FontWeight.w500,
               ),
             ),

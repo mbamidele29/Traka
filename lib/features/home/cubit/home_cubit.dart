@@ -14,10 +14,10 @@ import 'package:flutter/services.dart' as root_bundle;
 part 'home_state.dart';
 
 class HomeCubit extends Cubit<HomeState> {
-  final AblyService ablyService;
+  final AblyService service;
 
   List<Product>? products;
-  HomeCubit(this.ablyService) : super(HomeInitial()) {
+  HomeCubit(this.service) : super(HomeInitial()) {
     _loadProducts();
   }
 
@@ -46,11 +46,12 @@ class HomeCubit extends Cubit<HomeState> {
       OrderItem orderItem = OrderItem(
         product: product,
         quantity: quantity,
+        date: DateTime.now(),
         id: DateTime.now().millisecondsSinceEpoch.toString(),
       );
 
       emit(CreateOrderLoading());
-      await ablyService.publishToChannel(channelName, orderItem.toJson());
+      await service.publishToChannel(channelName, orderItem.toJson());
       products!.removeAt(index);
     } catch (ex) {
       emit(CreateOrderError(ex.toString()));
@@ -60,8 +61,7 @@ class HomeCubit extends Cubit<HomeState> {
   subscribeToOrdersChannel(String channelName) async {
     try {
       emit(GetOrdersLoading());
-      var data = await ablyService.getChannelhistory(channelName);
-      if (data.items.isEmpty) createOrder(channelName);
+      var data = await service.getChannelhistory(channelName);
       Queue<OrderItem> orders = Queue<OrderItem>();
 
       for (var element in data.items) {
@@ -69,12 +69,15 @@ class HomeCubit extends Cubit<HomeState> {
       }
       emit(GetOrdersSuccess(orders));
 
-      Stream<Message> stream = ablyService.subscribeToChannel(channelName);
+      Stream<Message> stream = service.subscribeToChannel(channelName);
       stream.listen((message) {
         OrderItem order =
             OrderItem.fromJson(jsonDecode((message.data as String)));
         emit(CreateOrderSuccess(order));
       });
+
+      // create new order if order is empty
+      if (data.items.isEmpty) createOrder(channelName);
     } catch (ex) {
       emit(GetOrdersError(ex.toString()));
     }

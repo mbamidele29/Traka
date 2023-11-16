@@ -8,6 +8,23 @@ enum OrderStatusEnum {
 }
 
 extension OrderStatusEnumExt on OrderStatusEnum {
+  int get rank {
+    switch (this) {
+      case OrderStatusEnum.orderPlaced:
+        return 1;
+      case OrderStatusEnum.orderAccepted:
+        return 2;
+      case OrderStatusEnum.pickupInProgress:
+        return 3;
+      case OrderStatusEnum.onTheWay:
+        return 4;
+      case OrderStatusEnum.arrived:
+        return 5;
+      case OrderStatusEnum.delivered:
+        return 6;
+    }
+  }
+
   String get code {
     switch (this) {
       case OrderStatusEnum.orderPlaced:

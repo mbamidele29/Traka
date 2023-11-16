@@ -20,14 +20,6 @@ class AuthScreen extends StatefulWidget {
 
 class _AuthScreenState extends State<AuthScreen> {
   @override
-  void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      locator<AuthCubit>().checkUserLogin();
-    });
-    super.initState();
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: BlocConsumer(
@@ -149,7 +141,8 @@ class _AuthScreenState extends State<AuthScreen> {
                           width: 139.w,
                           child: AppButton(
                             color: Colors.white,
-                            onPressed: () {},
+                            onPressed: () =>
+                                locator<AuthCubit>().authWithGithub(),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [

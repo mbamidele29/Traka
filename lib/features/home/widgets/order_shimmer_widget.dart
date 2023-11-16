@@ -37,7 +37,7 @@ class OrderItemShimmerWidget extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 13.w),
               child: Row(
                 children: [
-                  Icon(Icons.circle, color: Colors.green, size: 12.w),
+                  Icon(Icons.circle, color: AppColor.green, size: 12.w),
                   8.horizontalSpace,
                   ShimmerWidget(width: 100.w, height: 14.h, radius: 4.r),
                 ],
