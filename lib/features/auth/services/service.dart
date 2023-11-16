@@ -2,7 +2,9 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final FirebaseAuth auth;
+
+  AuthService(this.auth);
   Future<User?> authWithGoogle() async {
     try {
       final GoogleSignIn googleSignIn = GoogleSignIn();
@@ -20,7 +22,7 @@ class AuthService {
         );
 
         final UserCredential userCredential =
-            await _auth.signInWithCredential(credential);
+            await auth.signInWithCredential(credential);
 
         return userCredential.user;
       }
@@ -60,7 +62,7 @@ class AuthService {
 
   signOut() async {
     try {
-      await _auth.signOut();
+      await auth.signOut();
     } catch (e) {
       rethrow;
     }

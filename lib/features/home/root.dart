@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Future<void> _loadData() async {
     orders.clear();
-    Future.delayed(const Duration(seconds: 1), () {
+    Future.delayed(const Duration(seconds: 5), () {
       locator<HomeCubit>().subscribeToOrdersChannel(channelName);
     });
   }

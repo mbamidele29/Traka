@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
@@ -18,7 +19,8 @@ Future<void> initializeServices() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await _initAbly();
 
-  locator.registerSingleton<AuthCubit>(AuthCubit(AuthService()));
+  locator.registerSingleton<AuthCubit>(
+      AuthCubit(AuthService(FirebaseAuth.instance)));
   locator.registerSingleton<NavigationService>(NavigationService());
   locator.registerSingleton<HomeCubit>(HomeCubit(locator<AblyService>()));
   locator.registerSingleton<DetailsCubit>(DetailsCubit(locator<AblyService>()));

@@ -1,10 +1,16 @@
 # traka
 
-A new Flutter project.
+Traka is a food delivery app.
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+To run the app, use flutter run --dart-define-from-file=config.json
+
+The keys in the config.json file are for test purposes
+
+## Screenshot
+
+![alt text](https://github.com/mbamidele29/Traka/blob/main/screenshoys/thumbnail.png?raw=true)
 
 A few resources to get you started if this is your first Flutter project:
 
@@ -14,3 +20,5 @@ A few resources to get you started if this is your first Flutter project:
 For help getting started with Flutter development, view the
 [online documentation](https://docs.flutter.dev/), which offers tutorials,
 samples, guidance on mobile development, and a full API reference.
+
+
