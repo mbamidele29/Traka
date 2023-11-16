@@ -10,7 +10,7 @@ The keys in the config.json file are for test purposes
 
 ## Screenshot
 
-![alt text](https://github.com/mbamidele29/Traka/blob/main/screenshoys/thumbnail.png?raw=true)
+![alt text](https://github.com/mbamidele29/Traka/blob/main/screenshots/thumbnail.png?raw=true)
 
 A few resources to get you started if this is your first Flutter project:
 
