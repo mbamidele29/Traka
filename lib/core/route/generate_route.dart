@@ -6,7 +6,6 @@ import 'package:traka/features/details/root.dart';
 import 'package:traka/features/details/views/order_timeline.dart';
 import 'package:traka/features/home/root.dart';
 import 'package:traka/features/splash_screen/root.dart';
-import 'package:traka/features/webview/in_app_web.dart';
 
 Route<dynamic>? generateRoute(RouteSettings settings) {
   String? name = settings.name;
@@ -27,11 +26,6 @@ Route<dynamic>? generateRoute(RouteSettings settings) {
       return MaterialPageRoute(
           builder: (_) => OrderTimelineScreen(
               order: args['order'], statuses: args['statuses']));
-    case RouteKeys.webview:
-      Map args = settings.arguments as Map;
-      return MaterialPageRoute(
-          builder: (_) => InAppWebScreen(
-              url: args['url'], redirectUrl: args['redirectUrl']));
     default:
       return MaterialPageRoute(builder: (_) => const ErrorScreen());
   }

@@ -142,7 +142,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           child: AppButton(
                             color: Colors.white,
                             onPressed: () =>
-                                locator<AuthCubit>().authWithGithub(),
+                                locator<AuthCubit>().authWithGithub(context),
                             child: Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
