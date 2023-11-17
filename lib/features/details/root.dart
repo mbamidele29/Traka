@@ -165,20 +165,29 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
           floatingActionButtonLocation:
               FloatingActionButtonLocation.centerFloat,
           floatingActionButton: Visibility(
-            visible: statuses.isNotEmpty &&
-                !statuses
-                    .map((e) => e.status)
-                    .contains(OrderStatusEnum.delivered),
+            visible: statuses.isNotEmpty,
             child: SizedBox(
               width: 210.w,
               height: 53.h,
               child: AppButton(
                 width: 167.w,
                 color: AppColor.black,
-                buttonText: 'Increase Order Status',
+                buttonText: statuses
+                        .map((e) => e.status)
+                        .contains(OrderStatusEnum.delivered)
+                    ? 'Rate Order'
+                    : 'Increase Order Status',
                 onPressed: incomingStatus
                     ? null
                     : () {
+                        if (statuses
+                            .map((e) => e.status)
+                            .contains(OrderStatusEnum.delivered)) {
+                          ResponseMessage.showSuccessSnack(
+                              context: context,
+                              message: 'order rated successfully');
+                          return;
+                        }
                         OrderStatusEnum? status;
                         if (statuses.isEmpty) {
                           status = OrderStatusEnum.orderPlaced;
