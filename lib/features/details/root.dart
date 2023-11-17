@@ -39,7 +39,8 @@ class _OrderDetailsScreenState extends State<OrderDetailsScreen> {
     channelName = '${user.email}:order-tracking${widget.order.id}';
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
-      locator<DetailsCubit>().subscribeToDetailsChannel(channelName);
+      locator<DetailsCubit>().subscribeToDetailsChannel(
+          channelName: channelName, orderId: widget.order.id);
     });
 
     super.initState();

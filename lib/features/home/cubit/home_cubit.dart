@@ -7,6 +7,7 @@ import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:traka/core/models/order_item.dart';
 import 'package:traka/core/models/product.dart';
+import 'package:traka/core/notification/local_notification_manager.dart';
 import 'package:traka/core/services/ably_service.dart';
 import 'package:traka/core/utils/constants.dart';
 import 'package:flutter/services.dart' as root_bundle;
@@ -74,6 +75,8 @@ class HomeCubit extends Cubit<HomeState> {
         OrderItem order =
             OrderItem.fromJson(jsonDecode((message.data as String)));
         emit(CreateOrderSuccess(order));
+        LocalNotificationManager.showNotification(
+            title: 'New Order', body: 'Order #${order.id} has been created');
       });
 
       // create new order if order is empty

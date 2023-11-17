@@ -4,6 +4,7 @@ import 'dart:convert';
 import 'package:ably_flutter/ably_flutter.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
+import 'package:traka/core/notification/local_notification_manager.dart';
 import 'package:traka/core/services/ably_service.dart';
 import 'package:traka/core/utils/order_status.dart';
 import 'package:traka/features/details/models/order_status.dart';
@@ -14,7 +15,8 @@ class DetailsCubit extends Cubit<DetailsState> {
   final AblyService service;
   DetailsCubit(this.service) : super(DetailsInitial());
 
-  subscribeToDetailsChannel(String channelName) async {
+  subscribeToDetailsChannel(
+      {required String channelName, required String orderId}) async {
     try {
       emit(OrderStatusLoading());
       var data = await service.getChannelhistory(channelName);
@@ -33,6 +35,11 @@ class DetailsCubit extends Cubit<DetailsState> {
             OrderStatusModel.fromJson(jsonDecode((message.data as String)));
         emit(
             UpdateOrderStatusSuccess(channelName: channelName, status: status));
+
+        if (status.status != OrderStatusEnum.orderPlaced) {
+          LocalNotificationManager.showNotification(
+              title: 'Order #$orderId', body: status.status.title);
+        }
       });
 
       if (data.items.isEmpty) {
