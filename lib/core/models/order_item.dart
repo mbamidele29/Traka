@@ -1,8 +1,9 @@
+import 'package:equatable/equatable.dart';
 import 'package:traka/core/models/base_model.dart';
 
 import 'product.dart';
 
-class OrderItem extends BaseModel {
+class OrderItem extends BaseModel implements Equatable {
   final String id;
   final int quantity;
   final DateTime date;
@@ -30,4 +31,10 @@ class OrderItem extends BaseModel {
       };
 
   num get totalPrice => quantity * product.price;
+
+  @override
+  List<Object?> get props => [id, product, quantity, date];
+
+  @override
+  bool? get stringify => true;
 }
