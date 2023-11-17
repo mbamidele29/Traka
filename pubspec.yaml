@@ -30,6 +30,8 @@ dependencies:
   intl: ^0.18.1
   flutter_launcher_icons: ^0.13.1
   flutter_local_notifications: ^16.1.0
+  firebase_auth_mocks: ^0.13.0
+  google_sign_in_mocks: ^0.3.0
 
 flutter_launcher_icons:
   android: "launcher_icon"

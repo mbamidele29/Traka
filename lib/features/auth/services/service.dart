@@ -3,12 +3,12 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthService {
   final FirebaseAuth auth;
+  final GoogleSignIn googleSignIn;
 
-  AuthService(this.auth);
+  AuthService({required this.auth, required this.googleSignIn});
+
   Future<User?> authWithGoogle() async {
     try {
-      final GoogleSignIn googleSignIn = GoogleSignIn();
-
       final GoogleSignInAccount? googleSignInAccount =
           await googleSignIn.signIn();
 

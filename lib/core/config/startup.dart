@@ -3,6 +3,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:get_it/get_it.dart';
 import 'package:ably_flutter/ably_flutter.dart' as ably;
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:traka/core/data/local_storage.dart';
 import 'package:traka/core/route/navigation_service.dart';
 import 'package:traka/core/services/ably_service.dart';
@@ -19,8 +20,10 @@ Future<void> initializeServices() async {
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
   await _initAbly();
 
-  locator.registerSingleton<AuthCubit>(
-      AuthCubit(AuthService(FirebaseAuth.instance)));
+  final GoogleSignIn googleSignIn = GoogleSignIn();
+
+  locator.registerSingleton<AuthCubit>(AuthCubit(
+      AuthService(auth: FirebaseAuth.instance, googleSignIn: googleSignIn)));
   locator.registerSingleton<NavigationService>(NavigationService());
   locator.registerSingleton<HomeCubit>(HomeCubit(locator<AblyService>()));
   locator.registerSingleton<DetailsCubit>(DetailsCubit(locator<AblyService>()));
